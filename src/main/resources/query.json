@@ -1,0 +1,8 @@
+{
+	"SELECT" : {
+		"PLANS" : {}
+	},
+	"WHERE" : {
+		"EQ" : { "FIELD" : "country", "VALUE" : "location" }
+	}
+}
