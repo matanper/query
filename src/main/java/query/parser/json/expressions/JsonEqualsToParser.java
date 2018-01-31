@@ -3,15 +3,15 @@ package query.parser.json.expressions;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import query.lang.components.ParseException;
 import query.lang.components.QueryComponent;
-import query.lang.components.QueryComponentParser;
 import query.lang.expressions.binary.EqualsTo;
+import query.parser.ParseException;
+import query.parser.QueryComponentParser;
 
-public class JsonEqualsToParser extends QueryComponentParser<JsonElement> {
+public class JsonEqualsToParser implements QueryComponentParser<EqualsTo, JsonElement> {
 
 	@Override
-	public QueryComponent parse(JsonElement obj) throws ParseException {
+	public EqualsTo parse(JsonElement obj) throws ParseException {
 		if (!obj.isJsonObject()) {
 			throw new ParseException("json 'EQ' must be an object");
 		}

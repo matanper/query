@@ -1,4 +1,4 @@
-package query.lang.components;
+package query.parser;
 
 public class ParseException extends Exception {
 

@@ -19,4 +19,12 @@ public class QueryRoot extends QueryComponent {
 	public QueryRoot(Select select) {
 		this(select, Optional.empty());
 	}
+	
+	public Select getSelect() {
+		return this.select;
+	}
+	
+	public Optional<Where> getWhere() {
+		return this.where;
+	}
 }

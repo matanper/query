@@ -1,5 +1,6 @@
 package query.lang.statements;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import query.lang.components.QueryComponent;
@@ -11,5 +12,9 @@ public  class Where extends QueryComponent {
 	
 	public Where(List<Expression> expressions) {
 		this.expressions = expressions;
+	}
+	
+	public List<Expression> getExpressions() {
+		return new ArrayList<Expression>(this.expressions);
 	}
 }

@@ -9,17 +9,17 @@ import java.util.Set;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import query.lang.components.ParseException;
 import query.lang.components.QueryComponent;
-import query.lang.components.QueryComponentParser;
 import query.lang.projection.Projection;
 import query.lang.statements.Select;
+import query.parser.ParseException;
+import query.parser.QueryComponentParser;
 import query.parser.json.projection.JsonProjectionParser;
 
-public class JsonSelectParser extends QueryComponentParser<JsonElement> {
+public class JsonSelectParser implements QueryComponentParser<Select, JsonElement> {
 
 	@Override
-	public QueryComponent parse(JsonElement obj) throws ParseException {
+	public Select parse(JsonElement obj) throws ParseException {
 		if (!obj.isJsonObject()) {
 			throw new ParseException("json Select must be an object");
 		}
@@ -29,14 +29,14 @@ public class JsonSelectParser extends QueryComponentParser<JsonElement> {
 		Iterator<Entry<String, JsonElement>> entriesIterator = jsonObj.entrySet().iterator();
 		
 		while (entriesIterator.hasNext()) {
-			addEntryToMap(entriesIterator.next(), entities);
+			addEntityToMap(entriesIterator.next(), entities);
 		}
 		
 		return new Select(entities);
 	}
 
-	private void addEntryToMap(Entry<String, JsonElement> entry, Map<String, Projection> entities) throws ParseException {
-		Projection proj = (Projection) new JsonProjectionParser().parse(entry.getValue());
+	private void addEntityToMap(Entry<String, JsonElement> entry, Map<String, Projection> entities) throws ParseException {
+		Projection proj = new JsonProjectionParser().parse(entry.getValue());
 		entities.put(entry.getKey(), proj);
 	}
 	

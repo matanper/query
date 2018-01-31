@@ -1,5 +1,6 @@
 package query.lang.statements;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import query.lang.components.QueryComponent;
@@ -11,5 +12,9 @@ public class Select extends QueryComponent {
 	
 	public Select(Map<String, Projection> entities) {
 		this.entities = entities;
+	}
+	
+	public Map<String, Projection> getEntities() {
+		return new HashMap<>(this.entities);
 	}
 }

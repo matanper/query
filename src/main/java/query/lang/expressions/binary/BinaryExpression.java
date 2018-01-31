@@ -11,4 +11,12 @@ public abstract class BinaryExpression extends Expression {
 		this.field = field;
 		this.value = value;
 	}
+	
+	public String getField() {
+		return this.field;
+	}
+	
+	public Object getValue() {
+		return this.value;
+	}
 }

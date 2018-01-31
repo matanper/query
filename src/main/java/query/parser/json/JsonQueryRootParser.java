@@ -6,19 +6,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import query.lang.QueryRoot;
-import query.lang.components.ParseException;
 import query.lang.components.QueryComponent;
-import query.lang.components.QueryComponentParser;
 import query.lang.statements.Select;
 import query.lang.statements.Where;
+import query.parser.ParseException;
+import query.parser.QueryComponentParser;
 import query.parser.json.statements.JsonSelectParser;
 import query.parser.json.statements.JsonWhereParser;
 
-public class JsonQueryRootParser extends QueryComponentParser<JsonElement> {
-
+public class JsonQueryRootParser implements QueryComponentParser<QueryRoot, JsonElement> {
 
 	@Override
-	public QueryComponent parse(JsonElement obj) throws ParseException {
+	public QueryRoot parse(JsonElement obj) throws ParseException {
 		if (!obj.isJsonObject()) {
 			throw new ParseException("Json query root must be object");
 		}
@@ -47,4 +46,5 @@ public class JsonQueryRootParser extends QueryComponentParser<JsonElement> {
 		
 		return (Select) new JsonSelectParser().parse(element);
 	}
+
 }
